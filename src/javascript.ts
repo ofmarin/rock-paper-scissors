@@ -1,6 +1,6 @@
 //step 2: computer choice logic
-function getComputerChoice() {
-  let choices = ["ROCK", "PAPER", "SCISSORS"];
+function getComputerChoice():string {
+  let choices :string[] = ["ROCK", "PAPER", "SCISSORS"];
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
@@ -8,16 +8,16 @@ function getComputerChoice() {
 
 //step 4: keeping scores
 
-let humanScore = 0;
-let computerScore = 0;
+let humanScore : number = 0;
+let computerScore :number = 0;
 
 //step 5: Write the logic to play a single round
 
-function playRound(computerChoice, humanChoice) {
-  let beats = { PAPER: "ROCK", ROCK: "SCISSORS", SCISSORS: "PAPER" };
+function playRound(computerChoice :string, humanChoice:string) : "Draw" | "The computer has won!" | "The human has won!" {
+  let beats :{[index:string]: "ROCK" | "PAPER" | "SCISSORS"} = { PAPER: "ROCK", ROCK: "SCISSORS", SCISSORS: "PAPER" };
 
   if(humanScore === 5){
-    alert('Human is the Winner!');
+    alert('Human wins!');
     humanScore = 0;
     computerScore = 0;
     location.reload();
@@ -36,11 +36,11 @@ function playRound(computerChoice, humanChoice) {
   if (beats[computerChoice] === humanChoice) {
     computerScore += 1;
 
-    return "The computer has won this match";
+    return "The computer has won!";
   } else {
     humanScore += 1;
 
-    return "The human has won this match";
+    return "The human has won!";
   }
 
   
@@ -58,18 +58,18 @@ function playRound(computerChoice, humanChoice) {
  */
 
 let botones = document.querySelectorAll("#buttons button");
-console.log(buttons);
+console.log(botones);
 
-let rock = document.querySelector("#rock");
-let paper = document.querySelector("#paper");
-let scissors = document.querySelector("#scissors");
+let rock : Element | null = document.querySelector("#rock");
+let paper : Element | null = document.querySelector("#paper");
+let scissors : Element | null = document.querySelector("#scissors");
 
-let human_choice = "";
-let computer_choice = "";
+let human_choice : string = "";
+let computer_choice: string = "";
 // Como guardo dentro de cada boton el event listener
-botones.forEach((boton) =>
+botones.forEach((boton : Element) : void =>
   boton.addEventListener("click", (e) => {
-    human_choice = boton.textContent;
+    human_choice = boton.textContent!;
     computer_choice = getComputerChoice();
     addWinner(playRound(computer_choice, human_choice.toUpperCase()));
     addContent(
@@ -79,7 +79,7 @@ botones.forEach((boton) =>
   })
 );
 
-function addWinner(winner) {
+function addWinner(winner : string) {
   let div = document.createElement("div");
   let paragraph = document.createElement("p");
   paragraph.textContent = winner;
@@ -88,7 +88,7 @@ function addWinner(winner) {
   //addBorder(div);
 }
 
-function runningScore(humanScore, computerScore) {
+function runningScore(humanScore : number, computerScore : number) {
   let div = document.createElement("div");
   let p = document.createElement("p");
   p.textContent = `Player Score: ${humanScore} Computer Score: ${computerScore}`;
@@ -97,7 +97,7 @@ function runningScore(humanScore, computerScore) {
   addBorder(div);
 }
 
-function addContent(content) {
+function addContent(content : any) : void {
   let div = document.createElement("div");
   let para = document.createElement("p");
   para.textContent = content;
@@ -105,7 +105,7 @@ function addContent(content) {
   div.appendChild(para);
 }
 
-function addBorder(element) {
+function addBorder(element : HTMLElement) : void {
   element.style.border = "2px solid black";
   element.style.width = "fit-content";
   element.style.padding = "1rem";

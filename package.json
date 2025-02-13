@@ -1,8 +1,8 @@
 {
-  "name": "RPS",
+  "name": "rock-paper-scissors",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "built/javascript.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
